@@ -13,7 +13,7 @@ class Posters extends React.Component {
     }
 
     async componentDidMount() {
-        const postersResponse = await fetch(`http://localhost:4000/posters/`);
+        const postersResponse = await fetch(`${config.api}/posters/`);
         const posterJson = await postersResponse.json();
         this.setState({ posters: posterJson }); 
     }
@@ -35,11 +35,11 @@ class Posters extends React.Component {
 
                     <tbody>
                         {this.state.posters.map((poster) => (
-                            <tr key={poster.id}>
+                            <tr key={poster._id}>
                                 <td>{poster.name}</td>
                                 <td>
-                                    <Link to='/Edit/'>Edit</Link>
-                                    <Link to='/Delete/'>Delete</Link>
+                                    <Link to={`/poster/edit/${poster._id}`}>Edit</Link>
+                                    <Link to={`/poster/delete/${poster._id}`}>Delete</Link>
                                 </td>
                             </tr>
                         ))}

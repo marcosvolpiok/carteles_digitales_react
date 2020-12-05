@@ -36,7 +36,7 @@ class PostersEdit extends React.Component {
 
     async handleClick () {
         console.log('Submit!... ', this.state);
-        const response = await fetch(`http://localhost:4000/posters/update/${this.state.id}`, {
+        const response = await fetch(`${config.api}/posters/update/${this.state.id}`, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -68,7 +68,7 @@ class PostersEdit extends React.Component {
 
                         
                         <Uploady
-                            destination={{ url: `http://localhost:4000/posters/image/update/${this.state.id}` }}
+                            destination={{ url: `${config.api}/posters/image/update/${this.state.id}` }}
                             fileFilter={this.filterBySize}
                             accept="image/*"
                         >

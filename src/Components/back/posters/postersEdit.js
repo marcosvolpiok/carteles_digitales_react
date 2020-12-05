@@ -1,12 +1,16 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
+import Uploady from "@rpldy/uploady";
+import UploadButton from "@rpldy/upload-button";
+import UploadPreview from "@rpldy/upload-preview";
 const config = require('../../config/config.json')[env];
 
 
 class PostersEdit extends React.Component {
     state = {
         posters: [],
-        id: this.props.match.params.id
+        id: this.props.match.params.id,
+        image: null
     };
 
     constructor(props) {
@@ -46,7 +50,12 @@ class PostersEdit extends React.Component {
         this.props.history.push('/posters/list/'); //Redirect
 
     }
-    
+
+    filterBySize = (file) => {
+        //filter out images larger than 5MB
+        return file.size <= 5242880;
+    };
+
     render() {
         return (
         <div>
@@ -56,10 +65,16 @@ class PostersEdit extends React.Component {
                     <div className="card" key={poster._id}>
                     <div className="card-body">
                         <p className="card-text"><input type="text" defaultValue={poster.name} onChange={this.handleInputChange} name="name" placeholder="Name" /></p>
-                        
-                        <img src={poster._id} />
-                        <p className="card-text">{contact._id}</p>
 
+                        
+                        <Uploady
+                            destination={{ url: `http://localhost:4000/posters/image/update/${this.state.id}` }}
+                            fileFilter={this.filterBySize}
+                            accept="image/*"
+                        >
+                            <UploadButton />
+                            <UploadPreview />   
+                        </Uploady>
                         <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Edit</button>
                     </div>
                     </div>

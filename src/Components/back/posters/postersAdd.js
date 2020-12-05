@@ -28,7 +28,7 @@ class PostersAdd extends React.Component {
 
     async handleClick () {
         console.log('Submit!... ', this.state);
-        const response = await fetch(`${config.api}/posters/add/${this.state.id}`, {
+        const response = await fetch(`${config.api}/posters/add/`, {
             method: 'POST',
             mode: 'cors',
             headers: {

@@ -1,10 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
 const config = require('../../config/config.json')[env];
 
 
 class Posters extends React.Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+
     state = {
+        token: this.props.cookies.get("token") || "",
         posters: []
     };
 
@@ -13,7 +20,13 @@ class Posters extends React.Component {
     }
 
     async componentDidMount() {
-        const postersResponse = await fetch(`${config.api}/posters/`);
+        const photosResponse = await fetch(`${config.api}/posters/`,
+        {
+            method: 'GET',
+            headers: {
+              'access-token': this.state.token
+            }
+        });
         const posterJson = await postersResponse.json();
         this.setState({ posters: posterJson }); 
     }
@@ -58,4 +71,4 @@ class Posters extends React.Component {
       }
 
   }
-  export default Posters;
+export default withCookies(Posters);

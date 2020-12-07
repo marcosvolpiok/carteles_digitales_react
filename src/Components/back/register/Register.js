@@ -34,35 +34,38 @@ class Register extends React.Component {
     }
 
     async handleClick () {
-        if(this.state.pwd!=this.state.pwd2){
+        if(this.state.password!==this.state.pwd2){
             this.setState({
                 pwdError: true
             });
-        }
-
-        const responseLogin = await fetch(`${config.api}/register/`, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                user: this.state.user,
-                pwd: this.state.pwd
-            }) 
-        });
-        const loginJson = await responseLogin.json();
- 
-        this.setState({
-            registerMessage: loginJson.message
-        });
-
-        if(responseLogin.status===200){
-            this.setState({
-                registerStatus: true
+        }else{
+            const responseLogin = await fetch(`${config.api}/user/signup/`, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: this.state.name,
+                    email: this.state.email,
+                    password: this.state.password
+                }) 
             });
+            const loginJson = await responseLogin.json();
+    
+            /*
+            this.setState({
+                registerMessage: loginJson.message
+            });
+            */
 
-            this.handleCookie(loginJson.token);
+            if(responseLogin.status===200){
+                this.setState({
+                    registerStatus: true
+                });
+
+                this.handleCookie(loginJson.token);
+            }
         }
     }
 
@@ -83,7 +86,11 @@ class Register extends React.Component {
                 }
                 <div className="form-group">
                     <div className="form-group">
-                        <input type="text" name="user" onChange={this.handleInputChange} placeholder="User" />
+                        <input type="text" name="name" onChange={this.handleInputChange} placeholder="Name" />
+                    </div>
+
+                    <div className="form-group">
+                        <input type="text" name="email" onChange={this.handleInputChange} placeholder="E-mail" />
                     </div>
 
                     <div className="form-group">
@@ -95,7 +102,7 @@ class Register extends React.Component {
                     </div>
 
                     <div className="form-group">
-                        <input type="password" name="pwd" onChange={this.handleInputChange} placeholder="Password" />
+                        <input type="password" name="password" onChange={this.handleInputChange} placeholder="Password" />
                     </div>
 
                     <div className="form-group">

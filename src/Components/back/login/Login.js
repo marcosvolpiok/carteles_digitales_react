@@ -5,7 +5,7 @@ import { withCookies, Cookies } from 'react-cookie';
 import 'bootstrap/dist/css/bootstrap.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 const env = process.env.NODE_ENV || 'development';
-const config = require('../../config/config.json')[env];
+const config = require('../../../config/config.json')[env];
 
 class Login extends React.Component {
     static propTypes = {
@@ -39,15 +39,15 @@ class Login extends React.Component {
     }
 
     async handleClick () {
-        const responseLogin = await fetch(`${config.api}/login/`, {
+        const responseLogin = await fetch(`${config.api}/user/login/`, {
             method: 'POST',
             mode: 'cors',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: this.state.user,
-                pwd: this.state.pwd
+                email: this.state.user,
+                password: this.state.pwd
             }) 
         });
         const loginJson = await responseLogin.json();
@@ -80,7 +80,7 @@ class Login extends React.Component {
                 }
 
                 {this.state.loginStatus === true &&
-                    <h3><Link to="/posters/list/">Posters list</Link></h3>
+                    <h3><Link to="/posters/">Posters list</Link></h3>
                 }
 
                 <div className="form-group">

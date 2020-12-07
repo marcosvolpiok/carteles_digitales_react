@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 const env = process.env.NODE_ENV || 'development';
-const config = require('../../config/config.json')[env];
+const config = require('../../../config/config.json')[env];
 
 class Register extends React.Component {
 

@@ -2,7 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
-const config = require('../../config/config.json')[env];
+const env = process.env.NODE_ENV || 'development';
+const config = require('../../../config/config.json')[env];
 
 
 class Posters extends React.Component {
@@ -20,7 +21,7 @@ class Posters extends React.Component {
     }
 
     async componentDidMount() {
-        const photosResponse = await fetch(`${config.api}/posters/`,
+        const postersResponse = await fetch(`${config.api}/posters/`,
         {
             method: 'GET',
             headers: {

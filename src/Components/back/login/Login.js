@@ -93,6 +93,8 @@ class Login extends React.Component {
                     </div>
                 </div>
                 <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Login</button>
+
+                <p><Link to="/register/">Register</Link></p>
             </div>
         )
       }

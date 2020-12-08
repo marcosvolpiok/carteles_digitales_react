@@ -18,11 +18,6 @@ class Register extends React.Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
     }
-
-    handleCookie = (token) => {
-        const { cookies } = this.props;
-        cookies.set("token", token, { path: "/" });
-    };
    
     handleInputChange(event) {
         const target = event.target;
@@ -59,12 +54,10 @@ class Register extends React.Component {
             });
             */
 
-            if(responseLogin.status===200){
+            if(responseLogin.status===200 || responseLogin.status===201){
                 this.setState({
                     registerStatus: true
                 });
-
-                this.handleCookie(loginJson.token);
             }
         }
     }

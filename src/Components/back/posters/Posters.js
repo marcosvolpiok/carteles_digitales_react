@@ -36,7 +36,7 @@ class Posters extends React.Component {
     render() {
         return (
         <div>
-            <button type="button" class="btn btn-primary"><Link to="/posters/add">Add</Link></button>
+            <Link className="btn btn-primary" to="/posters/add" role="button">Add</Link>
 
             {this.state.posters.length > 0 &&
                 <div>

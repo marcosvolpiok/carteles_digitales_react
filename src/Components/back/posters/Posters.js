@@ -36,6 +36,8 @@ class Posters extends React.Component {
     render() {
         return (
         <div>
+            <button type="button" class="btn btn-primary"><Link to="/posters/add">Add</Link></button>
+
             {this.state.posters.length > 0 &&
                 <div>
                     <table className="table">

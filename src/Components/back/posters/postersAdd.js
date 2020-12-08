@@ -3,11 +3,18 @@ import {Link} from 'react-router-dom';
 import Uploady from "@rpldy/uploady";
 import UploadButton from "@rpldy/upload-button";
 import UploadPreview from "@rpldy/upload-preview";
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
 const config = require('../../config/config.json')[env];
 
 
 class PostersAdd extends React.Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+
     state = {
+        token: this.props.cookies.get("token") || "",
         image: null
     };
 
@@ -32,7 +39,8 @@ class PostersAdd extends React.Component {
             method: 'POST',
             mode: 'cors',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${this.state.token}`
             },
             body: JSON.stringify({
                 name: this.state.name
@@ -75,4 +83,4 @@ class PostersAdd extends React.Component {
       }
 
   }
-  export default PostersAdd;
+export default withCookies(PostersAdd);

@@ -3,11 +3,18 @@ import {Link} from 'react-router-dom';
 import Uploady from "@rpldy/uploady";
 import UploadButton from "@rpldy/upload-button";
 import UploadPreview from "@rpldy/upload-preview";
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
 const config = require('../../config/config.json')[env];
 
 
 class PostersEdit extends React.Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+
     state = {
+        token: this.props.cookies.get("token") || "",
         posters: [],
         id: this.props.match.params.id,
         image: null
@@ -20,7 +27,15 @@ class PostersEdit extends React.Component {
     }
 
     async componentDidMount() {
-        const postersResponse = await fetch(`${config.api}/posters/${this.state.id}`);
+        //const postersResponse = await fetch(`${config.api}/posters/${this.state.id}`);
+        const postersResponse = await fetch(`${config.api}/posters/${this.state.id}`, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${this.state.token}`
+            }
+        });
         const posterJson = await postersResponse.json();
         this.setState({ posters: posterJson }); 
     }
@@ -40,7 +55,8 @@ class PostersEdit extends React.Component {
             method: 'POST',
             mode: 'cors',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${this.state.token}`
             },
             body: JSON.stringify({
                 name: this.state.name
@@ -91,4 +107,4 @@ class PostersEdit extends React.Component {
       }
 
   }
-  export default PostersEdit;
+export default withCookies(PostersEdit);

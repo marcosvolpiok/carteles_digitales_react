@@ -25,7 +25,8 @@ class Posters extends React.Component {
         {
             method: 'GET',
             headers: {
-              'access-token': this.state.token
+              //'access-token': this.state.token
+              'Authorization': `Bearer ${this.state.token}`
             }
         });
         const posterJson = await postersResponse.json();

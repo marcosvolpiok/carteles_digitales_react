@@ -4,7 +4,8 @@ import { HashRouter as Router, Route, Link, Switch, Redirect, useLocation  } fro
 import Posters from './Components/back/posters/Posters';
 import Login from './Components/back/login/Login';
 import Register from './Components/back/register/Register';
-
+import PostersAdd from './Components/back/posters/postersAdd';
+import PostersEdit from './Components/back/posters/postersEdit';
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
           <Route exact path='/posters' component={Posters} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
+          <Route exact path='/posters/add' component={PostersAdd} />
+          <Route exact path='/posters/edit' component={PostersEdit} />          
           
           {/*<Route path='/RouteNoMatch' component={RouteNoMatch}  />*/}
         </Switch>

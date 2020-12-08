@@ -5,7 +5,8 @@ import UploadButton from "@rpldy/upload-button";
 import UploadPreview from "@rpldy/upload-preview";
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
-const config = require('../../config/config.json')[env];
+const env = process.env.NODE_ENV || 'development';
+const config = require('../../../config/config.json')[env];
 
 
 class PostersEdit extends React.Component {

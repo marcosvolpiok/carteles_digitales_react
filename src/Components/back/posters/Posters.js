@@ -21,7 +21,7 @@ class Posters extends React.Component {
     }
 
     async componentDidMount() {
-        const postersResponse = await fetch(`${config.api}/posters/`,
+        const postersResponse = await fetch(`${config.api}/poster/list`,
         {
             method: 'GET',
             headers: {
@@ -43,10 +43,8 @@ class Posters extends React.Component {
                     <table className="table">
                     <thead>
                         <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Actions</th>
-                        
+                            <th scope="col">Name</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
 
@@ -55,7 +53,7 @@ class Posters extends React.Component {
                             <tr key={poster._id}>
                                 <td>{poster.name}</td>
                                 <td>
-                                    <Link to={`/posters/edit/${poster._id}`}>Edit</Link>
+                                    <Link to={`/posters/edit/${poster._id}`}>Edit</Link> - 
                                     <Link to={`/posters/delete/${poster._id}`}>Delete</Link>
                                 </td>
                             </tr>

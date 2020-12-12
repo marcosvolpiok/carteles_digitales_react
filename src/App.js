@@ -9,7 +9,7 @@ import PostersEdit from './Components/back/posters/postersEdit';
 
 function App() {
   return (
-    <div class="x_content">
+    <div>
       <Router>
         <Switch>
           {/*<Route exact path='/Action/delete/:id' component={ActionsDelete} />*/}
@@ -17,7 +17,9 @@ function App() {
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
           <Route exact path='/posters/add' component={PostersAdd} />
-          <Route exact path='/posters/edit' component={PostersEdit} />          
+          <Route exact path='/posters/edit/:id' component={PostersEdit} />
+          <Route exact path='/posters/delete' component={PostersEdit} />
+                  
           
           {/*<Route path='/RouteNoMatch' component={RouteNoMatch}  />*/}
         </Switch>

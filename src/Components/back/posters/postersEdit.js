@@ -10,13 +10,15 @@ const config = require('../../../config/config.json')[env];
 
 
 class PostersEdit extends React.Component {
+    
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     };
+    
 
     state = {
         token: this.props.cookies.get("token") || "",
-        posters: [],
+        poster: {},
         id: this.props.match.params.id,
         image: null
     };
@@ -27,9 +29,12 @@ class PostersEdit extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
+
+
+
     async componentDidMount() {
         //const postersResponse = await fetch(`${config.api}/posters/${this.state.id}`);
-        const postersResponse = await fetch(`${config.api}/posters/${this.state.id}`, {
+        const postersResponse = await fetch(`${config.api}/poster/${this.state.id}`, {
             method: 'GET',
             mode: 'cors',
             headers: {
@@ -38,8 +43,10 @@ class PostersEdit extends React.Component {
             }
         });
         const posterJson = await postersResponse.json();
-        this.setState({ posters: posterJson }); 
+        this.setState({ poster: posterJson }); 
     }
+
+
 
     handleInputChange(event) {
         const target = event.target;
@@ -52,7 +59,7 @@ class PostersEdit extends React.Component {
 
     async handleClick () {
         console.log('Submit!... ', this.state);
-        const response = await fetch(`${config.api}/posters/update/${this.state.id}`, {
+        const response = await fetch(`${config.api}/poster/update/${this.state.id}`, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -64,7 +71,7 @@ class PostersEdit extends React.Component {
             }) 
         });
         console.log(response);
-        this.props.history.push('/posters/list/'); //Redirect
+        this.props.history.push('/posters/'); //Redirect
 
     }
 
@@ -73,12 +80,17 @@ class PostersEdit extends React.Component {
         return file.size <= 5242880;
     };
 
+    
+
+
+    
     render() {
+        const poster = this.state.poster;
+
         return (
         <div>
-            {this.state.posters.length > 0 &&
+            {Object.keys(poster).length  &&
                 <form>
-                {this.state.posters.map((poster) => (
                     <div className="card" key={poster._id}>
                     <div className="card-body">
                         <p className="card-text"><input type="text" defaultValue={poster.name} onChange={this.handleInputChange} name="name" placeholder="Name" /></p>
@@ -92,20 +104,21 @@ class PostersEdit extends React.Component {
                             <UploadButton />
                             <UploadPreview />   
                         </Uploady>
+                        *
                         <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Edit</button>
                     </div>
                     </div>
-                ))}
-            </form>
+                </form>
+           
             }
 
-            {this.state.posters.length === 0 &&
+            
+            {Object.keys(poster).length === 0 &&
                 <h2>No such any poster.</h2>
             }
         </div>
         )
         
       }
-
   }
 export default withCookies(PostersEdit);

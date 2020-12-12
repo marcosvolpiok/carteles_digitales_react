@@ -36,7 +36,7 @@ class PostersAdd extends React.Component {
 
     async handleClick () {
         console.log('Submit!... ', this.state);
-        const response = await fetch(`${config.api}/posters/add/`, {
+        const response = await fetch(`${config.api}/poster/add/`, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -48,7 +48,7 @@ class PostersAdd extends React.Component {
             }) 
         });
         console.log(response);
-        this.props.history.push('/posters/list/'); //Redirect
+        this.props.history.push('/posters/'); //Redirect
 
     }
 

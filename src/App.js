@@ -6,6 +6,7 @@ import Login from './Components/back/login/Login';
 import Register from './Components/back/register/Register';
 import PostersAdd from './Components/back/posters/postersAdd';
 import PostersEdit from './Components/back/posters/postersEdit';
+import PosterDelete from './Components/back/posters/PosterDelete';
 import PostersAddImage from './Components/back/posters/postersAddImage';
 
 
@@ -21,7 +22,7 @@ function App() {
           <Route exact path='/posters/add' component={PostersAdd} />
           <Route exact path='/posters/addImage/:id' component={PostersAddImage} />
           <Route exact path='/posters/edit/:id' component={PostersEdit} />
-          <Route exact path='/posters/delete' component={PostersEdit} />
+          <Route exact path='/poster/delete/:id' component={PosterDelete} />
                   
           
           {/*<Route path='/RouteNoMatch' component={RouteNoMatch}  />*/}

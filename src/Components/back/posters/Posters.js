@@ -54,7 +54,7 @@ class Posters extends React.Component {
                                 <td>{poster.name}</td>
                                 <td>
                                     <Link to={`/posters/edit/${poster._id}`}>Edit</Link> - 
-                                    <Link to={`/posters/delete/${poster._id}`}>Delete</Link>
+                                    <Link to={`/poster/delete/${poster._id}`}>Delete</Link>
                                 </td>
                             </tr>
                         ))}

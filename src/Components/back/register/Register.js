@@ -29,6 +29,10 @@ class Register extends React.Component {
     }
 
     async handleClick () {
+        this.setState({
+            pwdError: false
+        });
+
         if(this.state.password!==this.state.pwd2){
             this.setState({
                 pwdError: true
@@ -47,16 +51,14 @@ class Register extends React.Component {
                 }) 
             });
             const loginJson = await responseLogin.json();
-    
-            /*
-            this.setState({
-                registerMessage: loginJson.message
-            });
-            */
 
             if(responseLogin.status===200 || responseLogin.status===201){
                 this.setState({
                     registerStatus: true
+                });
+            }else{
+                this.setState({
+                    registerMessage: loginJson.message
                 });
             }
         }

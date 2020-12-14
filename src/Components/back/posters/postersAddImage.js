@@ -79,9 +79,13 @@ class postersAddImage extends React.Component {
             <form>
                 <div className="card">
                     <div className="card-body">
-                        <p>Original imagen:</p>
-                        <img src={`${config.static_files_url}${this.state.poster.file_path}`}
-                        alt="Original image" />
+                        {this.state.poster.file_path &&
+                            <div>
+                                <p>Original imagen:</p>
+                                <img src={`${config.static_files_url}${this.state.poster.file_path}`}
+                                alt="Original image" />
+                            </div>
+                        }
 
                         <h3>Change image</h3>
                         <Uploady

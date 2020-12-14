@@ -89,7 +89,7 @@ class PostersEdit extends React.Component {
 
         return (
         <div>
-            {Object.keys(poster).length  &&
+            {Object.keys(poster).length>0  &&
                 <form>
                     <div className="card" key={poster._id}>
                     <div className="card-body">

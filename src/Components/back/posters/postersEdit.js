@@ -44,6 +44,8 @@ class PostersEdit extends React.Component {
         });
         const posterJson = await postersResponse.json();
         this.setState({ poster: posterJson }); 
+
+        console.log(posterJson);
     }
 
 
@@ -89,7 +91,7 @@ class PostersEdit extends React.Component {
 
         return (
         <div>
-            {Object.keys(poster).length>0  &&
+            {poster._id  &&
                 <form>
                     <div className="card" key={poster._id}>
                     <div className="card-body">
@@ -103,7 +105,7 @@ class PostersEdit extends React.Component {
             }
 
             
-            {Object.keys(poster).length === 0 &&
+            {!poster._id &&
                 <h2>No such any poster.</h2>
             }
         </div>

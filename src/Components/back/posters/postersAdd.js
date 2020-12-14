@@ -57,7 +57,7 @@ class PostersAdd extends React.Component {
                     <div className="card-body">
                         <p className="card-text"><input type="text" placeholder="Name" onChange={this.handleInputChange} name="name" placeholder="Name" /></p>
                         
-                        <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Add</button>
+                        <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Next</button>
                     </div>
                 </div>
             </form>

@@ -71,7 +71,8 @@ class PostersEdit extends React.Component {
             }) 
         });
         console.log(response);
-        this.props.history.push('/posters/'); //Redirect
+        //this.props.history.push('/posters/'); //Redirect
+        this.props.history.push(`/posters/addImage/${this.state.id}`); //Redirect
 
     }
 
@@ -95,17 +96,7 @@ class PostersEdit extends React.Component {
                     <div className="card-body">
                         <p className="card-text"><input type="text" defaultValue={poster.name} onChange={this.handleInputChange} name="name" placeholder="Name" /></p>
 
-                        
-                        <Uploady
-                            destination={{ url: `${config.api}/posters/image/update/${this.state.id}` }}
-                            fileFilter={this.filterBySize}
-                            accept="image/*"
-                        >
-                            <UploadButton />
-                            <UploadPreview />   
-                        </Uploady>
-                        *
-                        <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Edit</button>
+                        <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Next</button>
                     </div>
                     </div>
                 </form>

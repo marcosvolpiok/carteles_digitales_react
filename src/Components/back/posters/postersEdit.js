@@ -73,7 +73,6 @@ class PostersEdit extends React.Component {
         console.log(response);
         //this.props.history.push('/posters/'); //Redirect
         this.props.history.push(`/posters/addImage/${this.state.id}`); //Redirect
-
     }
 
     filterBySize = (file) => {

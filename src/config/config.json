@@ -1,9 +1,11 @@
 {
     "development":{
-            "api": "http://localhost:3050"
+            "api": "http://localhost:3050",
+            "static_files_url": "http://localhost:3050/"
     },
 
     "production":{
-        "api": "http://localhost:4040"
+        "api": "http://localhost:4040",
+        "static_files_url": "http://localhost:3050/"
     }
 }

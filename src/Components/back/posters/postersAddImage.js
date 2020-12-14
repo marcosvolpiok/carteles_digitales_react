@@ -17,6 +17,7 @@ class postersAddImage extends React.Component {
     state = {
         token: this.props.cookies.get("token") || "",
         image: null,
+        poster: {},
         id: this.props.match.params.id
     };
 
@@ -50,7 +51,20 @@ class postersAddImage extends React.Component {
         });
         console.log(response);
         this.props.history.push('/posters/'); //Redirect
+    }
 
+    async componentDidMount() {
+        const postersResponse = await fetch(`${config.api}/poster/${this.state.id}`, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${this.state.token}`
+            }
+        });
+        const posterJson = await postersResponse.json();
+        console.log(posterJson);
+        this.setState({ poster: posterJson }); 
     }
 
     filterBySize = (file) => {
@@ -64,7 +78,12 @@ class postersAddImage extends React.Component {
             <h1>Add image</h1>
             <form>
                 <div className="card">
-                    <div className="card-body">                        
+                    <div className="card-body">
+                        <p>Original imagen:</p>
+                        <img src={`${config.static_files_url}${this.state.poster.file_path}`}
+                        alt="Original image" />
+
+                        <h3>Change image</h3>
                         <Uploady
                             destination={{
                                 url: `${config.api}/poster/addImage`,

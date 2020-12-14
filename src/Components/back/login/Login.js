@@ -70,8 +70,8 @@ class Login extends React.Component {
     render() {    
         return (
             <div>
-                <h2>User: demo</h2>
-                <h2>Password: demo</h2>
+                <h2>User: 1234@gmail.com</h2>
+                <h2>Password: 1234</h2>
                 {this.state.loginMessage !== '' &&
                 <div className="alert alert-secondary" role="alert">
                     <p>{this.state.loginMessage}</p>

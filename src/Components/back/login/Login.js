@@ -62,39 +62,37 @@ class Login extends React.Component {
             });
 
             this.handleCookie(loginJson.token);
+
+            this.props.history.push(`/posters/`);
         }
     }
 
-   
-    
     render() {    
         return (
             <div>
-                <h2>User: 1234@gmail.com</h2>
-                <h2>Password: 1234</h2>
-                {this.state.loginMessage !== '' &&
-                <div className="alert alert-secondary" role="alert">
-                    <p>{this.state.loginMessage}</p>
-                </div>
-                    
-                }
-
-                {this.state.loginStatus === true &&
-                    <h3><Link to="/posters/">Posters list</Link></h3>
-                }
-
-                <div className="form-group">
-                    <div className="form-group">
-                        <input type="text" name="user" onChange={this.handleInputChange} placeholder="User" />
+                <div>
+                    <h2>User: 1234@gmail.com</h2>
+                    <h2>Password: 1234</h2>
+                    {this.state.loginMessage !== '' &&
+                    <div className="alert alert-secondary" role="alert">
+                        <p>{this.state.loginMessage}</p>
                     </div>
+                        
+                    }
 
                     <div className="form-group">
-                        <input type="password" name="pwd" onChange={this.handleInputChange} placeholder="Password" />
-                    </div>
-                </div>
-                <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Login</button>
+                        <div className="form-group">
+                            <input type="text" name="user" onChange={this.handleInputChange} placeholder="User" />
+                        </div>
 
-                <p><Link to="/register/">Register</Link></p>
+                        <div className="form-group">
+                            <input type="password" name="pwd" onChange={this.handleInputChange} placeholder="Password" />
+                        </div>
+                    </div>
+                    <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Login</button>
+
+                    <p><Link to="/register/">Register</Link></p>
+                </div>
             </div>
         )
       }

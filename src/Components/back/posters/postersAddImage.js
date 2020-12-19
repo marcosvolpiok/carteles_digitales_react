@@ -90,6 +90,7 @@ class postersAddImage extends React.Component {
                         <h3>Change image</h3>
                         <Uploady
                             destination={{
+                                headers: {"Authorization": `Bearer ${this.state.token}`},
                                 url: `${config.api}/poster/addImage`,
                                 sendWithFormData: true,
                                 params: {

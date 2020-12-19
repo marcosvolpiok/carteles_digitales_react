@@ -70,43 +70,51 @@ class Register extends React.Component {
         return (
             <div>
                 {this.state.registerMessage !== '' &&
-                <div className="alert alert-secondary" role="alert">
-                    <p>{this.state.registerMessage}</p>
-                </div>
-                    
+                    <div className="alert alert-secondary" role="alert">
+                        <p>{this.state.registerMessage}</p>
+                    </div> 
                 }
+
+                {this.state.registerStatus === false &&
+                    <div>
+                        <div className="form-group">
+                            <div className="form-group">
+                                <input type="text" name="name" onChange={this.handleInputChange} placeholder="Name" />
+                            </div>
+
+                            <div className="form-group">
+                                <input type="text" name="email" onChange={this.handleInputChange} placeholder="E-mail" />
+                            </div>
+
+                            <div className="form-group">
+                                {this.state.pwdError === true &&
+                                <div class="alert alert-danger">
+                                    <strong>Error!</strong> Passwords aren't are equal
+                                </div>
+                                }
+                            </div>
+
+                            <div className="form-group">
+                                <input type="password" name="password" onChange={this.handleInputChange} placeholder="Password" />
+                            </div>
+
+                            <div className="form-group">
+                                <input type="password" name="pwd2" onChange={this.handleInputChange} placeholder="Re-entry password" />
+                            </div>
+
+                            
+                        </div>
+                        <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Register</button>
+                    </div>
+                }
+
 
                 {this.state.registerStatus === true &&
-                    <h3><Link to="/login/">Login</Link></h3>
+                    <div>
+                        <h3>Registered successful</h3>
+                        <h3><Link to="/login/">Login</Link></h3>
+                    </div>
                 }
-                <div className="form-group">
-                    <div className="form-group">
-                        <input type="text" name="name" onChange={this.handleInputChange} placeholder="Name" />
-                    </div>
-
-                    <div className="form-group">
-                        <input type="text" name="email" onChange={this.handleInputChange} placeholder="E-mail" />
-                    </div>
-
-                    <div className="form-group">
-                        {this.state.pwdError === true &&
-                        <div class="alert alert-danger">
-                            <strong>Error!</strong> Passwords aren't are equal
-                        </div>
-                        }
-                    </div>
-
-                    <div className="form-group">
-                        <input type="password" name="password" onChange={this.handleInputChange} placeholder="Password" />
-                    </div>
-
-                    <div className="form-group">
-                        <input type="password" name="pwd2" onChange={this.handleInputChange} placeholder="Re-entry password" />
-                    </div>
-
-                    
-                </div>
-                <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Register</button>
             </div>
         )
       }

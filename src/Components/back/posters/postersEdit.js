@@ -69,7 +69,10 @@ class PostersEdit extends React.Component {
               'Authorization': `Bearer ${this.state.token}`
             },
             body: JSON.stringify({
-                name: this.state.name
+                name: this.state.name,
+                init_time: this.state.init_time,
+                end_time: this.state.end_time,
+                
             }) 
         });
         console.log(response);
@@ -96,6 +99,9 @@ class PostersEdit extends React.Component {
                     <div className="card" key={poster._id}>
                     <div className="card-body">
                         <p className="card-text"><input type="text" defaultValue={poster.name} onChange={this.handleInputChange} name="name" placeholder="Name" /></p>
+
+                        <p className="card-text">Init: <input type="time" onChange={this.handleInputChange} name="init_time" defaultValue={poster.init_time} /></p>
+                        <p className="card-text">End: <input type="time" onChange={this.handleInputChange} name="end_time" defaultValue={poster.end_time} /></p>
 
                         <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Next</button>
                     </div>

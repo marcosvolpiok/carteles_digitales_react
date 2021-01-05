@@ -39,7 +39,9 @@ class PostersAdd extends React.Component {
               'Authorization': `Bearer ${this.state.token}`
             },
             body: JSON.stringify({
-                name: this.state.name
+                name: this.state.name,
+                init_time: this.state.init_time,
+                end_time: this.state.end_time,
             }) 
         });
         console.log(response);
@@ -55,8 +57,12 @@ class PostersAdd extends React.Component {
             <form>
                 <div className="card">
                     <div className="card-body">
-                        <p className="card-text"><input type="text" placeholder="Name" onChange={this.handleInputChange} name="name" placeholder="Name" /></p>
+                        <p className="card-text"><input type="text" onChange={this.handleInputChange} name="name" placeholder="Name" /></p>
                         
+                        <p className="card-text">Init: <input type="time" onChange={this.handleInputChange} name="init_time" placeholder="Init" /></p>
+                        <p className="card-text">End: <input type="time" onChange={this.handleInputChange} name="end_time" placeholder="End" /></p>
+                        
+
                         <button type="button" className="btn btn-primary" onClick={() => this.handleClick()}>Next</button>
                     </div>
                 </div>

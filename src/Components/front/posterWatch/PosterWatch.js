@@ -54,6 +54,16 @@ class PosterWatch extends React.Component {
         this.setState({ poster: posterJson }); 
 
         console.log('llego posterrrrrrrrr', posterJson);
+        this.changePhoto(posterJson);
+
+        setInterval(() => {
+            this.changePhoto (posterJson)
+        }, 1000);
+    }
+
+
+    changePhoto (posterJson) {
+        console.log('checkea cambio de foto');
         posterJson.forEach(poster =>{
 
             const current = moment('2000-01-01 '+moment().format('HH')+':'+moment().format('MM')+':'+moment().format('ss')).format('YYYY-MM-DD HH:MM:ss');
@@ -70,11 +80,7 @@ class PosterWatch extends React.Component {
             console.log(init, end, current);
             
         });
-
-
-
     }
-
 
     render() {    
         return (

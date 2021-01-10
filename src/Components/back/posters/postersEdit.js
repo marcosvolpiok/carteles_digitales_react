@@ -33,7 +33,6 @@ class PostersEdit extends React.Component {
 
 
     async componentDidMount() {
-        //const postersResponse = await fetch(`${config.api}/posters/${this.state.id}`);
         const postersResponse = await fetch(`${config.api}/poster/${this.state.id}`, {
             method: 'GET',
             mode: 'cors',

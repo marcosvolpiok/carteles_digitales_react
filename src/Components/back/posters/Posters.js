@@ -31,6 +31,8 @@ class Posters extends React.Component {
         });
         const posterJson = await postersResponse.json();
         this.setState({ posters: posterJson }); 
+
+        console.log('poseterssss');
     }
     
     render() {
@@ -54,7 +56,8 @@ class Posters extends React.Component {
                                 <td>{poster.name}</td>
                                 <td>
                                     <Link to={`/posters/edit/${poster._id}`}>Edit</Link> - 
-                                    <Link to={`/poster/delete/${poster._id}`}>Delete</Link>
+                                    <Link to={`/poster/delete/${poster._id}`}>Delete</Link> - 
+                                    <Link to={`/poster/watch/${poster._id}`}>Link</Link> 
                                 </td>
                             </tr>
                         ))}

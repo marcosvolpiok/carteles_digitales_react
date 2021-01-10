@@ -8,6 +8,7 @@ import PostersAdd from './Components/back/posters/postersAdd';
 import PostersEdit from './Components/back/posters/postersEdit';
 import PosterDelete from './Components/back/posters/PosterDelete';
 import PostersAddImage from './Components/back/posters/postersAddImage';
+import PosterWatch from './Components/front/posterWatch/PosterWatch';
 
 
 function App() {
@@ -23,9 +24,10 @@ function App() {
           <Route exact path='/posters/addImage/:id' component={PostersAddImage} />
           <Route exact path='/posters/edit/:id' component={PostersEdit} />
           <Route exact path='/poster/delete/:id' component={PosterDelete} />
-                  
-          
-          {/*<Route path='/RouteNoMatch' component={RouteNoMatch}  />*/}
+
+          {/* POSTER FRONTEND */}
+          <Route exact path='/poster/watch/:id' component={PosterWatch} />
+                 
         </Switch>
     </Router>
     </div> 

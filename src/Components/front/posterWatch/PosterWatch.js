@@ -20,7 +20,8 @@ class PosterWatch extends React.Component {
 
     
     state = {
-        id: this.props.match.params.id
+        id: this.props.match.params.id,
+        posterImage: null
     };
 
 
@@ -54,24 +55,20 @@ class PosterWatch extends React.Component {
 
         console.log('llego posterrrrrrrrr', posterJson);
         posterJson.forEach(poster =>{
-            console.log('posterrr', poster);
-            let timeNow = moment().hour() +':'+ moment().minute();
-            timeNow = parseInt(timeNow.toString().replace(':', ''));
-            
-            const initTime = parseInt(poster.init_time.toString().replace(":", ""));
-            const endTime = parseInt(poster.end_time.toString().replace(":", ""));
 
-            console.log('inittttt: ', initTime);
-            console.log('now: ', timeNow);
-            console.log('enddddd', endTime);
+            const current = moment('2000-01-01 '+moment().format('HH')+':'+moment().format('MM')+':'+moment().format('ss')).format('YYYY-MM-DD HH:MM:ss');
+            //const current = moment().format('YYYY-MM-DD hh:MM:ss');
+            const init = moment('2000-01-01 ' + poster.init_time).format('YYYY-MM-DD HH:MM:ss');
+            const end = moment('2000-01-01 ' + poster.end_time).format('YYYY-MM-DD HH:MM:ss');
 
-
-
-            if(timeNow>=initTime && timeNow<=endTime){
-                console.log('****************muestra', poster.name);
-                console.log('path', poster.file_path)
+            console.log('poster.init_timeposter.init_timeposter.init_time', poster.init_time);
+            if(init <= current && current<=end){
+                console.log('************* MUESTRAAAAAAAAAAAAA ', poster.name);
+                console.log(init, end, current);
                 this.setState({ posterImage: poster.file_path }); 
             }
+            console.log(init, end, current);
+            
         });
 
 

@@ -4,7 +4,7 @@ const io = require('socket.io-client');
 const moment = require('moment');
 
 //import 'bootstrap/dist/css/bootstrap.min.css';
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENVVVV || 'development';
 const config = require('../../../config/config.json')[env];
 
 class PosterWatch extends React.Component {
@@ -64,7 +64,7 @@ class PosterWatch extends React.Component {
 
     changePhoto (posterJson) {
         console.log('checkea cambio de foto');
-        posterJson.forEach(poster =>{
+        posterJson.forEach(poster => {
 
             const current = moment('2000-01-01 '+moment().format('HH')+':'+moment().format('MM')+':'+moment().format('ss')).format('YYYY-MM-DD HH:MM:ss');
             //const current = moment().format('YYYY-MM-DD hh:MM:ss');

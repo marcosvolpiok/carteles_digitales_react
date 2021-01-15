@@ -1,7 +1,7 @@
 import React from 'react';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENVVVV || 'development';
 const config = require('../../../config/config.json')[env];
 
 

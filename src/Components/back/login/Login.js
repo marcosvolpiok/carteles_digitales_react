@@ -71,6 +71,8 @@ class Login extends React.Component {
         return (
             <div>
                 <div>
+                    {process.env.ENVIROMENT} -
+                    {env}
                     <h2>User: 1234@gmail.com</h2>
                     <h2>Password: 1234</h2>
                     {this.state.loginMessage !== '' &&

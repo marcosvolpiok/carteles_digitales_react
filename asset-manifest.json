@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/digital_posters_react/static/css/main.73efbf52.chunk.css",
-    "main.js": "/digital_posters_react/static/js/main.1e440a06.chunk.js",
-    "main.js.map": "/digital_posters_react/static/js/main.1e440a06.chunk.js.map",
+    "main.js": "/digital_posters_react/static/js/main.91476676.chunk.js",
+    "main.js.map": "/digital_posters_react/static/js/main.91476676.chunk.js.map",
     "runtime-main.js": "/digital_posters_react/static/js/runtime-main.de064c83.js",
     "runtime-main.js.map": "/digital_posters_react/static/js/runtime-main.de064c83.js.map",
     "static/css/2.95f25948.chunk.css": "/digital_posters_react/static/css/2.95f25948.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.95f25948.chunk.css",
     "static/js/2.f1753301.chunk.js",
     "static/css/main.73efbf52.chunk.css",
-    "static/js/main.1e440a06.chunk.js"
+    "static/js/main.91476676.chunk.js"
   ]
 }

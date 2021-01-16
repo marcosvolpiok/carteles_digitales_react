@@ -4,7 +4,7 @@ import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 import 'bootstrap/dist/css/bootstrap.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
-const env = process.env.ENVIROMENT || 'development';
+const env = process.env.NODE_ENV || 'production';
 const config = require('../../../config/config.json')[env];
 
 class Login extends React.Component {
@@ -71,8 +71,6 @@ class Login extends React.Component {
         return (
             <div>
                 <div>
-                    {process.env.ENVIROMENT} -
-                    {env}
                     <h2>User: 1234@gmail.com</h2>
                     <h2>Password: 1234</h2>
                     {this.state.loginMessage !== '' &&

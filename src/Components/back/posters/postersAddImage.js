@@ -5,7 +5,7 @@ import UploadButton from "@rpldy/upload-button";
 import UploadPreview from "@rpldy/upload-preview";
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
-const env = process.env.ENVIROMENT || 'development';
+const env = process.env.NODE_ENV || 'production';
 const config = require('../../../config/config.json')[env];
 
 

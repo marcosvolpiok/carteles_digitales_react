@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
-const env = process.env.ENVIROMENT || 'development';
+const env = process.env.NODE_ENV || 'production';
 const config = require('../../../config/config.json')[env];
 
 

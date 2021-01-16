@@ -1,7 +1,7 @@
 import React from 'react'
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 import {Redirect} from 'react-router-dom';
-const env = process.env.ENVIROMENT || 'development';
+const env = process.env.NODE_ENV || 'production';
 const config = require('../../../config/config.json')[env];
 
 class PosterDelete extends React.Component {

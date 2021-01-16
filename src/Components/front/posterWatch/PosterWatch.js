@@ -4,7 +4,7 @@ const io = require('socket.io-client');
 const moment = require('moment');
 
 //import 'bootstrap/dist/css/bootstrap.min.css';
-const env = process.env.NODE_ENVVVV || 'development';
+const env = process.env.ENVIROMENT || 'development';
 const config = require('../../../config/config.json')[env];
 
 class PosterWatch extends React.Component {

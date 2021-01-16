@@ -4,7 +4,7 @@ import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 import 'bootstrap/dist/css/bootstrap.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
-const env = process.env.NODE_ENVVVV || 'development';
+const env = process.env.ENVIROMENT || 'development';
 const config = require('../../../config/config.json')[env];
 
 class Login extends React.Component {

@@ -2,6 +2,7 @@
   "name": "digital_posters_front",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://marcosvolpiok.github.io/digital_posters_react",
   "dependencies": {
     "@rpldy/upload-button": "^0.8.1",
     "@rpldy/upload-preview": "^0.8.1",
@@ -45,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   }
 }

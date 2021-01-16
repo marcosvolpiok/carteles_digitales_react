@@ -5,7 +5,7 @@
     },
 
     "production":{
-        "api": "https://digitalpostersbackend.herokuapp.com/",
+        "api": "https://digitalpostersbackend.herokuapp.com",
         "static_files_url": "https://digitalpostersbackend.herokuapp.com//"
     }
 }

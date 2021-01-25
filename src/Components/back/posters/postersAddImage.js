@@ -82,7 +82,7 @@ class postersAddImage extends React.Component {
                         {this.state.poster.file_path &&
                             <div>
                                 <p>Original imagen:</p>
-                                <img src={`${config.static_files_url}${this.state.poster.file_path}`}
+                                <img src={`${this.state.poster.file_path}`}
                                 alt="Original image" />
                             </div>
                         }

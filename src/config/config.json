@@ -1,11 +1,9 @@
 {
     "development":{
             "api": "http://localhost:3050",
-            "static_files_url": "http://localhost:3050/"
     },
 
     "production":{
         "api": "https://digitalpostersbackend.herokuapp.com",
-        "static_files_url": "https://digitalpostersbackend.herokuapp.com//"
     }
 }

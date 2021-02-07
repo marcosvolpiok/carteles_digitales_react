@@ -65,6 +65,13 @@ class PostersEdit extends React.Component {
         let errors=[];
         let endTimeHours;
         let initTimeHours;
+        let nameFinal;
+        
+        if(!this.state.name){
+            nameFinal=this.state.poster.name;
+        }else{
+            nameFinal=this.state.name;
+        }
 
         if(!this.state.end_time){
             endTimeHours=this.state.poster.end_time;
@@ -78,6 +85,10 @@ class PostersEdit extends React.Component {
             initTimeHours=this.state.init_time;
         }
 
+        if(!nameFinal || nameFinal===''){
+            console.log('nombre nulo');
+            errors.push({name: 'name', value:'Name Is a mandatory field'});
+        }
 
         console.log('endTimeHours', endTimeHours);
         if(!moment('2000-01-01 '+endTimeHours, 'YYYY-MM-DD HH:mm', true).isValid()){

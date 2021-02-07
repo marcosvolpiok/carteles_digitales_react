@@ -7,7 +7,7 @@ import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 const env = process.env.NODE_ENV || 'production';
 const config = require('../../../config/config.json')[env];
-
+const moment = require('moment');
 
 class PostersEdit extends React.Component {
     
@@ -53,30 +53,87 @@ class PostersEdit extends React.Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
+        let endTimeHours;
+        let initTimeHours;
         this.setState({
             [name]: value
         });
     }
 
+
+    handleValidation(){
+        let errors=[];
+        let endTimeHours;
+        let initTimeHours;
+
+        if(!this.state.end_time){
+            endTimeHours=this.state.poster.end_time;
+        }else{
+            endTimeHours=this.state.end_time;
+        }
+
+        if(!this.state.init_time){
+            initTimeHours=this.state.poster.init_time;
+        }else{
+            initTimeHours=this.state.init_time;
+        }
+
+
+        console.log('endTimeHours', endTimeHours);
+        if(!moment('2000-01-01 '+endTimeHours, 'YYYY-MM-DD HH:mm', true).isValid()){
+            console.log('no es valido el end_time');
+            errors.push({name: 'end_date', value:'End date Is a mandatory field'})
+        }
+
+        console.log('initTimeHours', initTimeHours);
+        if(!moment('2000-01-01 '+initTimeHours, 'YYYY-MM-DD HH:mm', true).isValid()){
+            errors.push({name: 'init_date', value:'Init date Is a mandatory field'})
+        }
+
+        let errorsString='Errors:';
+        if(errors.length>0){
+            errors.forEach(e=>{
+                errorsString=errorsString + "\n" + e.value;
+            })
+            alert(errorsString);
+            return false;
+        }
+
+        const endTime = new Date(moment('2000-01-01 '+endTimeHours).format('YYYY-MM-DD HH:MM'));
+        const initTime = new Date (moment('2000-01-01 '+initTimeHours).format('YYYY-MM-DD HH:MM'));
+        console.log(endTime);
+        console.log(initTime);
+        
+        if(endTime<initTime){
+            errorsString=errorsString+'El timpo final no puede ser superior al tiempo inicial';
+            alert(errorsString);
+            return false;
+        }
+
+        return true;
+    }
+
     async handleClick () {
-        console.log('Submit!... ', this.state);
-        const response = await fetch(`${config.api}/poster/update/${this.state.id}`, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${this.state.token}`
-            },
-            body: JSON.stringify({
-                name: this.state.name,
-                init_time: this.state.init_time,
-                end_time: this.state.end_time,
-                
-            }) 
-        });
-        console.log(response);
-        //this.props.history.push('/posters/'); //Redirect
-        this.props.history.push(`/posters/addImage/${this.state.id}`); //Redirect
+        if(this.handleValidation()){
+            console.log('Submit!... ', this.state);
+            const response = await fetch(`${config.api}/poster/update/${this.state.id}`, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.state.token}`
+                },
+                body: JSON.stringify({
+                    name: this.state.name,
+                    init_time: this.state.init_time,
+                    end_time: this.state.end_time,
+                    
+                }) 
+            });
+            console.log(response);
+            //this.props.history.push('/posters/'); //Redirect
+            this.props.history.push(`/posters/addImage/${this.state.id}`); //Redirect
+        }
     }
 
     filterBySize = (file) => {

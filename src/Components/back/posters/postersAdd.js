@@ -18,6 +18,32 @@ class PostersAdd extends React.Component {
         super(props);
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleValidation = this.handleValidation.bind(this);
+
+    }
+
+
+    handleValidation(){
+        let errors=[];
+        if(!moment('2000-01-01 '+this.state.end_time, 'YYYY-MM-DD HH:MM', true).isValid()){
+            console.log('no es valido el');
+            errors.push({name: 'end_date', value:'End date Is a mandatory field'})
+        }
+
+        if(!moment('2000-01-01 '+this.state.init_time, 'YYYY-MM-DD HH:MM', true).isValid()){
+            errors.push({name: 'init_date', value:'Init date Is a mandatory field'})
+        }
+
+        if(errors.length>0){
+            let errorsString='Errors:';
+            errors.forEach(e=>{
+                errorsString=errorsString + "\n" + e.value;
+            })
+            alert(errorsString);
+            return false;
+        }
+
+        return true;
     }
 
     async handleInputChange(event) {
@@ -44,24 +70,25 @@ class PostersAdd extends React.Component {
     }
 
     async handleClick () {
-        console.log('Submit!... ', this.state);
-        const response = await fetch(`${config.api}/poster/add/`, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${this.state.token}`
-            },
-            body: JSON.stringify({
-                name: this.state.name,
-                init_time: this.state.init_time,
-                end_time: this.state.end_time,
-            }) 
-        });
-        console.log(response);
-        const responseJson = await response.json();
-        this.props.history.push(`/posters/addImage/${responseJson._id}`); //Redirect
-
+        if(this.handleValidation()){
+            console.log('Submit!... ', this.state);
+            const response = await fetch(`${config.api}/poster/add/`, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.state.token}`
+                },
+                body: JSON.stringify({
+                    name: this.state.name,
+                    init_time: this.state.init_time,
+                    end_time: this.state.end_time,
+                }) 
+            });
+            console.log(response);
+            const responseJson = await response.json();
+            this.props.history.push(`/posters/addImage/${responseJson._id}`); //Redirect
+        }
     }
 
     render() {

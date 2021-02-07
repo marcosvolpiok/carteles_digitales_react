@@ -25,6 +25,12 @@ class PostersAdd extends React.Component {
 
     handleValidation(){
         let errors=[];
+
+        if(!this.state.name){
+            console.log('nombre nulo');
+            errors.push({name: 'name', value:'Name Is a mandatory field'})
+        }
+
         if(!moment('2000-01-01 '+this.state.end_time, 'YYYY-MM-DD HH:mm', true).isValid()){
             console.log('no es valido el');
             errors.push({name: 'end_date', value:'End date Is a mandatory field'})

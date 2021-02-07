@@ -3,7 +3,7 @@ import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 const env = process.env.NODE_ENV || 'production';
 const config = require('../../../config/config.json')[env];
-
+const moment = require('moment');
 
 class PostersAdd extends React.Component {
     static propTypes = {
@@ -20,13 +20,27 @@ class PostersAdd extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    handleInputChange(event) {
+    async handleInputChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        this.setState({
+        await this.setState({
             [name]: value
         });
+
+        if((name==='end_time' || name==='init_time') && this.state.end_time){
+            const endTime = new Date(moment('2000-01-01 '+this.state.end_time).format('YYYY-MM-DD HH:MM'));
+            const initTime = new Date (moment('2000-01-01 '+this.state.init_time).format('YYYY-MM-DD HH:MM'));
+            console.log(endTime);
+            console.log(initTime);
+            
+            if(endTime<initTime){
+                alert('El timpo final no puede ser superior al tiempo inicial');
+                return false;
+            }
+        }
+
+
     }
 
     async handleClick () {

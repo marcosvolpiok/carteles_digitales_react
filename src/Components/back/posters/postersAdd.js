@@ -25,12 +25,12 @@ class PostersAdd extends React.Component {
 
     handleValidation(){
         let errors=[];
-        if(!moment('2000-01-01 '+this.state.end_time, 'YYYY-MM-DD HH:MM', true).isValid()){
+        if(!moment('2000-01-01 '+this.state.end_time, 'YYYY-MM-DD HH:mm', true).isValid()){
             console.log('no es valido el');
             errors.push({name: 'end_date', value:'End date Is a mandatory field'})
         }
 
-        if(!moment('2000-01-01 '+this.state.init_time, 'YYYY-MM-DD HH:MM', true).isValid()){
+        if(!moment('2000-01-01 '+this.state.init_time, 'YYYY-MM-DD HH:mm', true).isValid()){
             errors.push({name: 'init_date', value:'Init date Is a mandatory field'})
         }
 
@@ -40,6 +40,16 @@ class PostersAdd extends React.Component {
                 errorsString=errorsString + "\n" + e.value;
             })
             alert(errorsString);
+            return false;
+        }
+
+        const endTime = new Date(moment('2000-01-01 '+this.state.end_time).format('YYYY-MM-DD HH:mm'));
+        const initTime = new Date (moment('2000-01-01 '+this.state.init_time).format('YYYY-MM-DD HH:mm'));
+        console.log(endTime);
+        console.log(initTime);
+        
+        if(endTime<initTime){
+            alert('El timpo final no puede ser superior al tiempo inicial');
             return false;
         }
 
@@ -53,20 +63,6 @@ class PostersAdd extends React.Component {
         await this.setState({
             [name]: value
         });
-
-        if((name==='end_time' || name==='init_time') && this.state.end_time){
-            const endTime = new Date(moment('2000-01-01 '+this.state.end_time).format('YYYY-MM-DD HH:MM'));
-            const initTime = new Date (moment('2000-01-01 '+this.state.init_time).format('YYYY-MM-DD HH:MM'));
-            console.log(endTime);
-            console.log(initTime);
-            
-            if(endTime<initTime){
-                alert('El timpo final no puede ser superior al tiempo inicial');
-                return false;
-            }
-        }
-
-
     }
 
     async handleClick () {
